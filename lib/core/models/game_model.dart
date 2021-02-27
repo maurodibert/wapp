@@ -6,14 +6,14 @@ import 'package:wagr/core/models/home_team_model.dart';
 class GameModel {
   final int gameId;
   final String sport;
-  final String gameDateTime;
+  final DateTime gameDateTime;
   final String homeTeamKey;
   final Color homePrimaryColor;
   final Color homeSecondaryColor;
   final String awayTeamKey;
   final Color awayPrimaryColor;
   final Color awaySecondaryColor;
-  final String spread;
+  final double spread;
   final HomeTeamModel homeTeam;
   final AwayTeamModel awayTeam;
 
@@ -36,14 +36,14 @@ class GameModel {
     return GameModel(
       gameId: json['gameId'],
       sport: json['sport'],
-      gameDateTime: json['gameDateTime'],
+      gameDateTime: DateTime.parse(json['gameDatetime']),
       homeTeamKey: json['homeTeamKey'],
       homePrimaryColor: colorConvert(json['homePrimaryColor']),
       homeSecondaryColor: colorConvert(json['homeSecondaryColor']),
       awayTeamKey: json['awayTeamKey'],
       awayPrimaryColor: colorConvert(json['awayPrimaryColor']),
       awaySecondaryColor: colorConvert(json['awaySecondaryColor']),
-      spread: json['spread'],
+      spread: json['spread'] != null ? double.parse(json['spread']) : null,
       homeTeam: HomeTeamModel.fromJson(json['homeTeam']),
       awayTeam: AwayTeamModel.fromJson(json['awayTeam']),
     );

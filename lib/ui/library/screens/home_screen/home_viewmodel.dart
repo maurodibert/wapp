@@ -15,6 +15,9 @@ class HomeViewModel extends ChangeNotifier {
   List<GameModel> _games;
   List<GameModel> get games => _games;
 
+  DateTime _today;
+  DateTime get today => _today;
+
   //
   // GENERAL STATE
 
