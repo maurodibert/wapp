@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wagr/core/constants.dart';
+import 'package:wagr/core/models/day_model.dart';
+import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
+import 'package:wagr/ui/library/screens/home_screen/views/home_body.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/home_header.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewModel model = Provider.of<HomeViewModel>(context);
+    Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
           body: model.games != null
-              ? Stack(
+              ? Column(
                   children: [
                     HomeHeader(),
-                    // HomeBody(),
+                    HomeBody(),
                   ],
                 )
               : Center(
@@ -22,12 +28,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// ListView.separated(
-//                   itemCount: model.games.length,
-//                   separatorBuilder: (BuildContext context, int index) => Divider(),
-//                   itemBuilder: (BuildContext context, int index) {
-//                     return ListTile(
-//                       title: Text(model.games[index].gameId.toString()),
-//                     );
-//                   })
