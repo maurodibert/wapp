@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 // COLORS
 // Primary Palette
-const kYellow = Color(0xFFFFC70D);
-const kOrange = Color(0xFFF89F00);
+const kPurple = Color(0xFF440743);
+const kPurpleLight = Color(0xFF7A4173);
+const kOrange = Color(0xFFB87D2B);
+const kOrangeLight = Color(0xFFF8CC76);
 
 // General Palette
 const kError = Color(0xFFF64949);
