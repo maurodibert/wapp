@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
@@ -21,21 +22,37 @@ class HomeHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 0, 20),
-              child: Text('Games', style: kH1),
+              padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
+              child: Text('Games', style: kH1.copyWith(fontWeight: FontWeight.normal)),
             ),
             Container(
-              height: 40,
+              height: 70,
               child: ListView.separated(
-                  itemCount: model.games.length,
+                  itemCount: model.week.length,
                   scrollDirection: Axis.horizontal,
                   separatorBuilder: (BuildContext context, int index) => Divider(),
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Container(
-                        child: Text(model.games[index].gameId.toString()),
-                      ),
+                    return Container(
+                      child: index == 0
+                          ? MaterialButton(
+                              onPressed: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text('Today', style: kP),
+                              ))
+                          : index == 1
+                              ? MaterialButton(
+                                  onPressed: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text('Tomorrow', style: kP),
+                                  ))
+                              : MaterialButton(
+                                  onPressed: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(model.week[index].dayName, style: kP),
+                                  )),
                     );
                   }),
             )

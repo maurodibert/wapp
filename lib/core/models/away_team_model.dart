@@ -24,8 +24,8 @@ class AwayTeamModel {
       teamName: json['teamName'],
       city: json['city'],
       teamKey: json['teamKey'],
-      primaryColor: colorConvert(json['primaryColor']),
-      secondarColor: colorConvert(json['secondaryColor']),
+      primaryColor: convertToColor(json['primaryColor']),
+      secondarColor: convertToColor(json['secondaryColor']),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color colorConvert(String color) {
+Color convertToColor(String color) {
   String stringColor = color.replaceAll("#", '');
   Color finalColor;
   if (stringColor.length == 6) {
