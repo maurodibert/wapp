@@ -8,10 +8,18 @@ class HomeScreen extends StatelessWidget {
     HomeViewModel model = Provider.of<HomeViewModel>(context);
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Text('Wagr'),
-        ),
-      ),
+          body: model.games != null
+              ? ListView.separated(
+                  itemCount: model.games.length,
+                  separatorBuilder: (BuildContext context, int index) => Divider(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text(model.games[index].gameId.toString()),
+                    );
+                  })
+              : Center(
+                  child: Text('There are no games'),
+                )),
     );
   }
 }
