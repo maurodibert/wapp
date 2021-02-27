@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
+import 'package:wagr/ui/library/screens/home_screen/components/game_card.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 
 class HomeBody extends StatelessWidget {
@@ -33,8 +34,12 @@ class HomeBody extends StatelessWidget {
                   ),
                   for (GameModel game in model.week[i].games)
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(game.gameId.toString()),
+                      padding: const EdgeInsets.all(24.0),
+                      child: GameCard(
+                        homeTeam: game.homeTeam,
+                        awayTeam: game.awayTeam,
+                      ),
+                      // child: Text(game.gameId.toString()),
                     )
                 ],
               ),

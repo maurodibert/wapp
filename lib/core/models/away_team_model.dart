@@ -7,7 +7,7 @@ class AwayTeamModel {
   final String city;
   final String teamKey;
   final Color primaryColor;
-  final Color secondarColor;
+  final Color secondaryColor;
 
   AwayTeamModel({
     this.teamId,
@@ -15,7 +15,7 @@ class AwayTeamModel {
     this.city,
     this.teamKey,
     this.primaryColor,
-    this.secondarColor,
+    this.secondaryColor,
   });
 
   factory AwayTeamModel.fromJson(Map<String, dynamic> json) {
@@ -25,7 +25,7 @@ class AwayTeamModel {
       city: json['city'],
       teamKey: json['teamKey'],
       primaryColor: convertToColor(json['primaryColor']),
-      secondarColor: convertToColor(json['secondaryColor']),
+      secondaryColor: convertToColor(json['secondaryColor']),
     );
   }
 }

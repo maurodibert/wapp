@@ -31,10 +31,10 @@ const SizedBox k62Horizontal = SizedBox(width: 62);
 //
 // COMPONENTS - general
 BoxShadow kBottomMediumShadow = BoxShadow(
-  offset: Offset(0, 12),
-  blurRadius: 15,
-  spreadRadius: 2,
-  color: Colors.black45,
+  offset: Offset(0, 0),
+  blurRadius: 6,
+  spreadRadius: 1,
+  color: Colors.black12,
 );
 
 double kBigRadius = 40;
