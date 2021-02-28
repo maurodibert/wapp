@@ -13,7 +13,7 @@ class GameModel {
   final String awayTeamKey;
   final Color awayPrimaryColor;
   final Color awaySecondaryColor;
-  final double spread;
+  final String spread;
   final HomeTeamModel homeTeam;
   final AwayTeamModel awayTeam;
 
@@ -43,7 +43,7 @@ class GameModel {
       awayTeamKey: json['awayTeamKey'],
       awayPrimaryColor: convertToColor(json['awayPrimaryColor']),
       awaySecondaryColor: convertToColor(json['awaySecondaryColor']),
-      spread: json['spread'] != null ? double.parse(json['spread']) : null,
+      spread: json['spread'] != null ? json['spread'] : "Odds pending",
       homeTeam: HomeTeamModel.fromJson(json['homeTeam']),
       awayTeam: AwayTeamModel.fromJson(json['awayTeam']),
     );

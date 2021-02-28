@@ -38,6 +38,7 @@ class HomeBody extends StatelessWidget {
                       child: GameCard(
                         homeTeam: game.homeTeam,
                         awayTeam: game.awayTeam,
+                        game: game,
                       ),
                       // child: Text(game.gameId.toString()),
                     )

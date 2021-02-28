@@ -12,7 +12,6 @@ class HomeHeader extends StatelessWidget {
     return Container(
       height: size.height * 0.25,
       width: size.width,
-      color: Colors.yellow,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
