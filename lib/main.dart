@@ -29,3 +29,45 @@ class WagrApp extends StatelessWidget {
     );
   }
 }
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _mycontroller = new ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    Scaffold(
+        body: Container(
+            height: 100,
+            child: Stack(children: <Widget>[
+              SingleChildScrollView(
+                  controller: _mycontroller,
+                  child: Column(
+                    children: <Widget>[
+                      Text('LEFT            '),
+                      Text('LEFT            '),
+                      Text('LEFT            '),
+                      Text('LEFT            '),
+                      Text('LEFT            '),
+                      Text('LEFT            '),
+                    ],
+                  )),
+              SingleChildScrollView(
+                  controller: _mycontroller,
+                  child: Column(
+                    children: <Widget>[
+                      Text('          RIGHT'),
+                      Text('          RIGHT'),
+                      Text('          RIGHT'),
+                      Text('          RIGHT'),
+                      Text('          RIGHT'),
+                      Text('          RIGHT'),
+                    ],
+                  )),
+            ])));
+  }
+}

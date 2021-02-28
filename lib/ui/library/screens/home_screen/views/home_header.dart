@@ -23,6 +23,7 @@ class HomeHeader extends StatelessWidget {
           Container(
             height: 70,
             child: ListView.separated(
+                controller: model.horizontalController,
                 itemCount: model.week.length,
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (_, __) => Divider(),
@@ -30,20 +31,20 @@ class HomeHeader extends StatelessWidget {
                   return Container(
                     child: index == 0
                         ? MaterialButton(
-                            onPressed: () {},
+                            onPressed: () => Scrollable.ensureVisible(model.keys[0].currentContext),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Today', style: kP),
                             ))
                         : index == 1
                             ? MaterialButton(
-                                onPressed: () {},
+                                onPressed: () => Scrollable.ensureVisible(model.keys[1].currentContext),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text('Tomorrow', style: kP),
                                 ))
                             : MaterialButton(
-                                onPressed: () {},
+                                onPressed: () => Scrollable.ensureVisible(model.keys[index].currentContext),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(model.week[index].dayName, style: kP),

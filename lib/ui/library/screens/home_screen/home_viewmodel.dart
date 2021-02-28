@@ -14,6 +14,9 @@ class HomeViewModel extends ChangeNotifier {
   //
   // INJECTIONS
   GamesAPI _api = locator<GamesAPI>();
+
+  //
+  // GENERAL STATE
   List<GameModel> _games;
   List<GameModel> get games => _games;
 
@@ -22,8 +25,14 @@ class HomeViewModel extends ChangeNotifier {
   List<DayModel> _week;
   List<DayModel> get week => _week;
 
-  //
-  // GENERAL STATE
+  List<GlobalKey> _keys = [];
+  List<GlobalKey> get keys => _keys;
+
+  ScrollController _verticalController;
+  ScrollController get verticalController => _verticalController;
+
+  ScrollController _horizontalController;
+  ScrollController get horizontalController => _horizontalController;
 
   //
   // LIFE CYCLE - Initialization and disposing
@@ -41,6 +50,16 @@ class HomeViewModel extends ChangeNotifier {
         }
       }
     }
+
+    // scrolling
+    for (int i = 0; i < 7; i++) {
+      GlobalKey _key = GlobalKey();
+      _keys.add(_key);
+    }
+
+    // _controllers = LinkedScrollControllerGroup();
+    // _verticalController = _controllers.addAndGet();
+    // _horizontalController = _controllers.addAndGet();
 
     notifyListeners();
   }

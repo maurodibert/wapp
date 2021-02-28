@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wagr/core/constants.dart';
-import 'package:wagr/core/models/day_model.dart';
-import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/home_body.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/home_header.dart';

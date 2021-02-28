@@ -16,6 +16,7 @@ class HomeBody extends StatelessWidget {
       height: size.height * 0.719,
       width: size.width,
       child: SingleChildScrollView(
+        controller: model.verticalController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -27,10 +28,10 @@ class HomeBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                     child: i == 0
-                        ? Text('Today', style: kP.copyWith(fontSize: 24))
+                        ? Text('Today', key: model.keys[0], style: kP.copyWith(fontSize: 24))
                         : i == 1
-                            ? Text('Tomorrow', style: kP.copyWith(fontSize: 24))
-                            : Text(model.week[i].dayName, style: kP.copyWith(fontSize: 24)),
+                            ? Text('Tomorrow', key: model.keys[1], style: kP.copyWith(fontSize: 24))
+                            : Text(model.week[i].dayName, key: model.keys[i], style: kP.copyWith(fontSize: 24)),
                   ),
                   for (GameModel game in model.week[i].games)
                     Padding(
@@ -40,7 +41,6 @@ class HomeBody extends StatelessWidget {
                         awayTeam: game.aTeam,
                         game: game,
                       ),
-                      // child: Text(game.gameId.toString()),
                     )
                 ],
               ),
