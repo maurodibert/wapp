@@ -2,30 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:wagr/core/helpers/color_converter.dart';
 
 class HomeTeamModel {
-  final int teamId;
-  final String teamName;
+  final int id;
+  final String name;
   final String city;
   final String teamKey;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final Color primary;
+  final Color secondary;
 
   HomeTeamModel({
-    this.teamId,
-    this.teamName,
+    this.id,
+    this.name,
     this.city,
     this.teamKey,
-    this.primaryColor,
-    this.secondaryColor,
+    this.primary,
+    this.secondary,
   });
 
   factory HomeTeamModel.fromJson(Map<String, dynamic> json) {
     return HomeTeamModel(
-      teamId: json['teamId'],
-      teamName: json['teamName'],
+      id: json['teamId'],
+      name: json['teamName'],
       city: json['city'],
       teamKey: json['teamKey'],
-      primaryColor: convertToColor(json['primaryColor']),
-      secondaryColor: convertToColor(json['secondaryColor']),
+      primary: convertToColor(json['primaryColor']),
+      secondary: convertToColor(json['secondaryColor']),
     );
   }
 }

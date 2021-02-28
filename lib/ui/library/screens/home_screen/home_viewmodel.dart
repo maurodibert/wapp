@@ -31,12 +31,12 @@ class HomeViewModel extends ChangeNotifier {
     _games = await _api.fetchGames();
 
     // week order
-    _today = _games[0].gameDateTime;
+    _today = _games[0].date;
     _week = createWeek(_today);
     for (DayModel categoryDay in _week) {
       categoryDay.games = [];
       for (GameModel game in _games) {
-        if (categoryDay.dateTime.day == game.gameDateTime.day) {
+        if (categoryDay.dateTime.day == game.date.day) {
           categoryDay.games.add(game);
         }
       }

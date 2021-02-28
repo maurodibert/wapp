@@ -1,51 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:wagr/core/helpers/color_converter.dart';
+import 'package:wagr/core/helpers/underscore_remover.dart';
 import 'package:wagr/core/models/away_team_model.dart';
 import 'package:wagr/core/models/home_team_model.dart';
+import 'package:wagr/core/models/sport_model.dart';
 
 class GameModel {
-  final int gameId;
-  final String sport;
-  final DateTime gameDateTime;
+  final int id;
+  final SportModel sport;
+  final DateTime date;
+  final String league;
   final String homeTeamKey;
-  final Color homePrimaryColor;
-  final Color homeSecondaryColor;
+  final Color homePrimary;
+  final Color homeSecondary;
   final String awayTeamKey;
-  final Color awayPrimaryColor;
-  final Color awaySecondaryColor;
+  final Color awayPrimary;
+  final Color awaySecondary;
   final String spread;
-  final HomeTeamModel homeTeam;
-  final AwayTeamModel awayTeam;
+  final HomeTeamModel hTeam;
+  final AwayTeamModel aTeam;
 
   GameModel({
-    this.gameId,
+    this.id,
     this.sport,
-    this.gameDateTime,
+    this.date,
+    this.league,
     this.homeTeamKey,
-    this.homePrimaryColor,
-    this.homeSecondaryColor,
+    this.homePrimary,
+    this.homeSecondary,
     this.awayTeamKey,
-    this.awayPrimaryColor,
-    this.awaySecondaryColor,
+    this.awayPrimary,
+    this.awaySecondary,
     this.spread,
-    this.homeTeam,
-    this.awayTeam,
+    this.hTeam,
+    this.aTeam,
   });
 
   factory GameModel.fromJson(Map<String, dynamic> json) {
+    String _league = removeUnderscore(json['league']);
+
     return GameModel(
-      gameId: json['gameId'],
-      sport: json['sport'],
-      gameDateTime: DateTime.parse(json['gameDatetime']),
+      id: json['gameId'],
+      sport: SportModel.fromJson(json['sport']),
+      date: DateTime.parse(json['gameDatetime']),
+      league: _league,
       homeTeamKey: json['homeTeamKey'],
-      homePrimaryColor: convertToColor(json['homePrimaryColor']),
-      homeSecondaryColor: convertToColor(json['homeSecondaryColor']),
+      homePrimary: convertToColor(json['homePrimaryColor']),
+      homeSecondary: convertToColor(json['homeSecondaryColor']),
       awayTeamKey: json['awayTeamKey'],
-      awayPrimaryColor: convertToColor(json['awayPrimaryColor']),
-      awaySecondaryColor: convertToColor(json['awaySecondaryColor']),
+      awayPrimary: convertToColor(json['awayPrimaryColor']),
+      awaySecondary: convertToColor(json['awaySecondaryColor']),
       spread: json['spread'] != null ? json['spread'] : "Odds pending",
-      homeTeam: HomeTeamModel.fromJson(json['homeTeam']),
-      awayTeam: AwayTeamModel.fromJson(json['awayTeam']),
+      hTeam: HomeTeamModel.fromJson(json['homeTeam']),
+      aTeam: AwayTeamModel.fromJson(json['awayTeam']),
     );
   }
 }

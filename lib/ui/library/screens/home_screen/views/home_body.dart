@@ -25,7 +25,7 @@ class HomeBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                     child: i == 0
                         ? Text('Today', style: kP.copyWith(fontSize: 24))
                         : i == 1
@@ -36,8 +36,8 @@ class HomeBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: GameCard(
-                        homeTeam: game.homeTeam,
-                        awayTeam: game.awayTeam,
+                        homeTeam: game.hTeam,
+                        awayTeam: game.aTeam,
                         game: game,
                       ),
                       // child: Text(game.gameId.toString()),
