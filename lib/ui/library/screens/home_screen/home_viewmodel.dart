@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:wagr/core/helpers/week_creator.dart';
 import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
@@ -25,14 +27,15 @@ class HomeViewModel extends ChangeNotifier {
   List<DayModel> _week;
   List<DayModel> get week => _week;
 
-  List<GlobalKey> _keys = [];
-  List<GlobalKey> get keys => _keys;
+  List<GlobalKey> _keysVertical = [];
+  List<GlobalKey> get keysVertical => _keysVertical;
 
-  ScrollController _verticalController;
-  ScrollController get verticalController => _verticalController;
-
-  ScrollController _horizontalController;
-  ScrollController get horizontalController => _horizontalController;
+  AutoScrollController _verticalController;
+  AutoScrollController get verticalController => _verticalController;
+  AutoScrollController _horizontalController;
+  AutoScrollController get horizontalController => _horizontalController;
+  Offset _cardPosition;
+  Offset get cardPosition => _cardPosition;
 
   //
   // LIFE CYCLE - Initialization and disposing
@@ -54,13 +57,19 @@ class HomeViewModel extends ChangeNotifier {
     // scrolling
     for (int i = 0; i < 7; i++) {
       GlobalKey _key = GlobalKey();
-      _keys.add(_key);
+      _keysVertical.add(_key);
     }
 
-    // _controllers = LinkedScrollControllerGroup();
-    // _verticalController = _controllers.addAndGet();
-    // _horizontalController = _controllers.addAndGet();
+    _verticalController = AutoScrollController(
+        // viewportBoundaryGetter: () => Rect.fromLTRB(0, 0, 0, MediaQuery.of(context).padding.bottom),
+        axis: Axis.vertical);
+    // _horizontalController = ScrollController();
 
     notifyListeners();
   }
+
+  // void getPosition(GlobalKey key) {
+  //   RenderBox box = key.currentContext.findRenderObject();
+  //   _cardPosition = box.localToGlobal(Offset.zero);
+  // }
 }

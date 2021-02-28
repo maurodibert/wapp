@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 
@@ -31,20 +32,46 @@ class HomeHeader extends StatelessWidget {
                   return Container(
                     child: index == 0
                         ? MaterialButton(
-                            onPressed: () => Scrollable.ensureVisible(model.keys[0].currentContext),
+                            onPressed: () {
+                              model.verticalController.scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
+                              // model.getPosition(model.keysVertical[0]);
+                              // model.verticalController.animateTo(
+                              //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
+                              //     duration: Duration(milliseconds: 500),
+                              //     curve: Curves.easeIn);
+                              // Scrollable.ensureVisible(model.keys[0].currentContext);
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Today', style: kP),
                             ))
                         : index == 1
                             ? MaterialButton(
-                                onPressed: () => Scrollable.ensureVisible(model.keys[1].currentContext),
+                                onPressed: () {
+                                  model.verticalController
+                                      .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
+
+                                  // model.getPosition(model.keysVertical[1]);
+                                  // model.verticalController.animateTo(
+                                  //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
+                                  //     duration: Duration(milliseconds: 500),
+                                  //     curve: Curves.easeIn);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text('Tomorrow', style: kP),
                                 ))
                             : MaterialButton(
-                                onPressed: () => Scrollable.ensureVisible(model.keys[index].currentContext),
+                                onPressed: () {
+                                  model.verticalController
+                                      .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
+
+                                  // model.getPosition(model.keysVertical[index]);
+                                  // model.verticalController.animateTo(
+                                  //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
+                                  //     duration: Duration(milliseconds: 500),
+                                  //     curve: Curves.easeIn);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(model.week[index].dayName, style: kP),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
@@ -28,10 +29,25 @@ class HomeBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                     child: i == 0
-                        ? Text('Today', key: model.keys[0], style: kP.copyWith(fontSize: 24))
+                        ? AutoScrollTag(
+                            key: model.keysVertical[0],
+                            controller: model.verticalController,
+                            index: i,
+                            highlightColor: Colors.red.withOpacity(0.2),
+                            child: Text('Today', style: kP.copyWith(fontSize: 24)))
                         : i == 1
-                            ? Text('Tomorrow', key: model.keys[1], style: kP.copyWith(fontSize: 24))
-                            : Text(model.week[i].dayName, key: model.keys[i], style: kP.copyWith(fontSize: 24)),
+                            ? AutoScrollTag(
+                                key: model.keysVertical[1],
+                                controller: model.verticalController,
+                                index: i,
+                                highlightColor: Colors.red.withOpacity(0.2),
+                                child: Text('Tomorrow', style: kP.copyWith(fontSize: 24)))
+                            : AutoScrollTag(
+                                key: model.keysVertical[i],
+                                controller: model.verticalController,
+                                index: i,
+                                highlightColor: Colors.red.withOpacity(0.2),
+                                child: Text(model.week[i].dayName, style: kP.copyWith(fontSize: 24))),
                   ),
                   for (GameModel game in model.week[i].games)
                     Padding(
