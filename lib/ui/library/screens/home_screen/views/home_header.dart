@@ -24,7 +24,7 @@ class HomeHeader extends StatelessWidget {
           Container(
             height: 70,
             child: ListView.separated(
-                controller: model.horizontalController,
+                // controller: model.horizontalController,
                 itemCount: model.week.length,
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (_, __) => Divider(),
@@ -34,12 +34,6 @@ class HomeHeader extends StatelessWidget {
                         ? MaterialButton(
                             onPressed: () {
                               model.verticalController.scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
-                              // model.getPosition(model.keysVertical[0]);
-                              // model.verticalController.animateTo(
-                              //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
-                              //     duration: Duration(milliseconds: 500),
-                              //     curve: Curves.easeIn);
-                              // Scrollable.ensureVisible(model.keys[0].currentContext);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -50,12 +44,6 @@ class HomeHeader extends StatelessWidget {
                                 onPressed: () {
                                   model.verticalController
                                       .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
-
-                                  // model.getPosition(model.keysVertical[1]);
-                                  // model.verticalController.animateTo(
-                                  //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
-                                  //     duration: Duration(milliseconds: 500),
-                                  //     curve: Curves.easeIn);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -65,12 +53,6 @@ class HomeHeader extends StatelessWidget {
                                 onPressed: () {
                                   model.verticalController
                                       .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
-
-                                  // model.getPosition(model.keysVertical[index]);
-                                  // model.verticalController.animateTo(
-                                  //     model.cardPosition.dy - size.height * 0.25 - model.verticalController.offset,
-                                  //     duration: Duration(milliseconds: 500),
-                                  //     curve: Curves.easeIn);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),

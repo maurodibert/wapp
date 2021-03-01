@@ -8,7 +8,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewModel model = Provider.of<HomeViewModel>(context);
-    Size size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
