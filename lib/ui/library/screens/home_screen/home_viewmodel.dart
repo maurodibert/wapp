@@ -8,12 +8,9 @@ import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/core/services/games_api.dart';
 import 'package:wagr/service_locator.dart';
+import 'package:wagr/ui/library/screens/home_screen/components/day_tab.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  HomeViewModel() {
-    init();
-  }
-
   //
   // INJECTIONS
   GamesAPI _api = locator<GamesAPI>();
@@ -35,19 +32,22 @@ class HomeViewModel extends ChangeNotifier {
   List<Key> _onViewWidgetKeys = [];
   List<Key> get visibleWidgetsKeysgamesKeys => _onViewWidgetKeys;
 
-  AutoScrollController _verticalController;
-  AutoScrollController get verticalController => _verticalController;
-  dynamic _verticalKey;
-  dynamic get verticalKey => _verticalKey;
-
-  // AutoScrollController _horizontalController;
-  // AutoScrollController get horizontalController => _horizontalController;
   Offset _cardPosition;
   Offset get cardPosition => _cardPosition;
 
   //
+  //
+  //
+  //
+  // From video
+  TabController _tabController;
+  TabController get tabController => _tabController;
+  List<DayTab> _tabs = [];
+  List<DayTab> get tabs => _tabs;
+
+  //
   // LIFE CYCLE - Initialization and disposing
-  init() async {
+  init(TickerProvider ticker) async {
     _games = await _api.fetchGames();
 
     // week order
@@ -63,49 +63,12 @@ class HomeViewModel extends ChangeNotifier {
     }
 
     // scrolling
-    for (int i = 0; i < 7; i++) {
-      GlobalKey _key = GlobalKey();
-      _daysKeys.add(_key);
+    for (int i = 0; i < _week.length; i++) {
+      _tabs.add(DayTab(day: _week[i], selected: i == 0));
     }
 
-    _verticalController = AutoScrollController(axis: Axis.vertical);
-    _verticalKey = RectGetter.createGlobalKey();
-
-    // _horizontalController = ScrollController();
+    _tabController = TabController(length: _week.length, vsync: ticker);
 
     notifyListeners();
   }
-
-  GlobalKey generateKey(int indexForGetDay) {
-    var _key = RectGetter.createGlobalKey();
-    _gamesKeys.add(_key);
-    // _gamesKeys[indexForGetDay] = _key;
-
-    // _gamesKeys[indexForGetDay] = RectGetter.createGlobalKey();
-
-    // get index from horizontal
-    // threw comparing sth
-    // for (DayModel day in _week[indexForGetDay]) {}
-    return _key;
-  }
-
-  List<GlobalKey> getVisible(BuildContext context) {
-    var rect = RectGetter.getRectFromKey(verticalKey);
-    _onViewWidgetKeys = <GlobalKey>[];
-    _gamesKeys.forEach((key) {
-      var itemRect = RectGetter.getRectFromKey(key);
-      if (itemRect != null && !(itemRect.top > rect.bottom || itemRect.bottom < rect.top)) {
-        _onViewWidgetKeys.add(key);
-      }
-    });
-
-    // final RenderBox renderBox = _onViewWidgetKeys[0]
-    // LabeledGlobalKey _firstItem = _onViewWidgetKeys[0]['currentWidget']['child']['child']['game']['date'];
-    return _onViewWidgetKeys;
-  }
-
-  // void getPosition(GlobalKey key) {
-  //   RenderBox box = key.currentContext.findRenderObject();
-  //   _cardPosition = box.localToGlobal(Offset.zero);
-  // }
 }

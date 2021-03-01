@@ -1,11 +1,7 @@
 
-
-
-_keys == _gameKeys
-listViewKey == verticalKey
-_ctl == verticalController
-
-- pruebo sin listViewBuilder y sino haciéndolo tal y cómo está
+RappyCategory == DayModel
+rappiCategories = _week;
+RappiProduct =- GameModel
 
 ## Process
 ##### codes
