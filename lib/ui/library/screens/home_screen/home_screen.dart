@@ -48,20 +48,22 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 height: 60,
                 color: Colors.white,
                 child: TabBar(
+                    onTap: model.onDaySelected,
                     controller: model.tabController,
                     isScrollable: true,
                     tabs: model.tabs.map((e) => WeekTab(dayTab: e)).toList()),
               ),
               Expanded(
                   child: Container(
-                color: Colors.blue,
                 child: ListView.builder(
-                    itemCount: 20,
+                    itemCount: model.items.length,
                     itemBuilder: (context, index) {
-                      if (index.isOdd) {
-                        return DayItem();
+                      final item = model.items[index];
+
+                      if (item.isDay) {
+                        return DayItem(day: item.day);
                       } else {
-                        return GameItem();
+                        return GameItem(game: item.game);
                       }
                     }),
               ))

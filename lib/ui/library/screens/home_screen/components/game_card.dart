@@ -7,20 +7,15 @@ import 'package:wagr/core/models/home_team_model.dart';
 import 'package:wagr/ui/library/wagr_icons.dart';
 
 class GameCard extends StatelessWidget {
-  final HomeTeamModel homeTeam;
-  final AwayTeamModel awayTeam;
   final GameModel game;
 
   const GameCard({
-    Key key,
-    @required this.homeTeam,
-    @required this.awayTeam,
     @required this.game,
-  }) : super(key: key);
+  });
 
-  Widget _buildContent() {
-    List<String> _splittedHomeTeamName = homeTeam.name.split(' ');
-    List<String> _splittedAwayTeamName = awayTeam.teamName.split(' ');
+  Widget _buildContent(HomeTeamModel hTeam, AwayTeamModel aTeam) {
+    List<String> _splittedHomeTeamName = hTeam.name.split(' ');
+    List<String> _splittedAwayTeamName = aTeam.teamName.split(' ');
 
     return Row(children: [
       Expanded(
@@ -74,6 +69,9 @@ class GameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeTeamModel hTeam = game.hTeam;
+    AwayTeamModel aTeam = game.aTeam;
+
     return Column(
       children: [
         Container(
@@ -86,25 +84,25 @@ class GameCard extends StatelessWidget {
               children: [
                 Container(
                   width: 10,
-                  color: homeTeam.primary,
+                  color: hTeam.primary,
                 ),
                 Container(
                   width: 10,
-                  color: homeTeam.secondary,
+                  color: hTeam.secondary,
                 ),
                 Flexible(
                   child: Container(
                     color: Colors.white,
-                    child: _buildContent(),
+                    child: _buildContent(hTeam, aTeam),
                   ),
                 ),
                 Container(
                   width: 10,
-                  color: awayTeam.primaryColor,
+                  color: aTeam.primaryColor,
                 ),
                 Container(
                   width: 10,
-                  color: awayTeam.secondaryColor,
+                  color: aTeam.secondaryColor,
                 ),
               ],
             ),

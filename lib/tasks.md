@@ -2,6 +2,8 @@
 RappyCategory == DayModel
 rappiCategories = _week;
 RappiProduct =- GameModel
+RappiItem =
+
 
 ## Process
 ##### codes

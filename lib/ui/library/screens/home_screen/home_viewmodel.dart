@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:rect_getter/rect_getter.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:wagr/core/helpers/week_creator.dart';
 import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/core/services/games_api.dart';
 import 'package:wagr/service_locator.dart';
+import 'package:wagr/ui/library/screens/home_screen/components/category_item.dart';
 import 'package:wagr/ui/library/screens/home_screen/components/day_tab.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -25,13 +24,6 @@ class HomeViewModel extends ChangeNotifier {
   List<DayModel> _week;
   List<DayModel> get week => _week;
 
-  List<GlobalKey> _daysKeys = [];
-  List<GlobalKey> get daysKeys => _daysKeys;
-  List<Key> _gamesKeys = [];
-  List<Key> get gamesKeys => _gamesKeys;
-  List<Key> _onViewWidgetKeys = [];
-  List<Key> get visibleWidgetsKeysgamesKeys => _onViewWidgetKeys;
-
   Offset _cardPosition;
   Offset get cardPosition => _cardPosition;
 
@@ -44,6 +36,8 @@ class HomeViewModel extends ChangeNotifier {
   TabController get tabController => _tabController;
   List<DayTab> _tabs = [];
   List<DayTab> get tabs => _tabs;
+  List<DayInVerticalScrollItem> _items = [];
+  List<DayInVerticalScrollItem> get items => _items;
 
   //
   // LIFE CYCLE - Initialization and disposing
@@ -55,9 +49,11 @@ class HomeViewModel extends ChangeNotifier {
     _week = createWeek(_today);
     for (DayModel categoryDay in _week) {
       categoryDay.games = [];
+      _items.add(DayInVerticalScrollItem(day: categoryDay));
       for (GameModel game in _games) {
         if (categoryDay.dateTime.day == game.date.day) {
           categoryDay.games.add(game);
+          _items.add(DayInVerticalScrollItem(game: game));
         }
       }
     }
@@ -69,6 +65,14 @@ class HomeViewModel extends ChangeNotifier {
 
     _tabController = TabController(length: _week.length, vsync: ticker);
 
+    notifyListeners();
+  }
+
+  void onDaySelected(int index) {
+    final selected = _tabs[index];
+    for (int i = 0; i < _tabs.length; i++) {
+      _tabs[i] = _tabs[i].copyWith(selected == tabs[i]);
+    }
     notifyListeners();
   }
 }
