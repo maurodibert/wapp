@@ -30,8 +30,8 @@ const SizedBox k62Horizontal = SizedBox(width: 62);
 
 //
 // COMPONENTS - general
-const double kCardHeight = 172;
-const double kDayVerticalItemHeight = 80;
+const double kGameItemHeight = 172;
+const double kDayItemHeight = 80;
 
 BoxShadow kBottomMediumShadow = BoxShadow(
   offset: Offset(0, 0),
