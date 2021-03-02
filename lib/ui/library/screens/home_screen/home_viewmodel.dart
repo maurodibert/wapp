@@ -43,6 +43,8 @@ class HomeViewModel extends ChangeNotifier {
   List<DayGamesItem> _items = [];
   List<DayGamesItem> get items => _items;
   double _offsetFrom = 0.0;
+  double _offsetTo = 0.0;
+  bool _listen = true;
 
   //
   // LIFE CYCLE - Initialization and disposing
@@ -63,36 +65,64 @@ class HomeViewModel extends ChangeNotifier {
       }
     }
 
-    // scrolling
+    // synced scrolling
     for (int i = 0; i < _week.length; i++) {
       if (i > 0) {
         _offsetFrom += _week[i - 1].games.length * kCardHeight;
+      }
+
+      if (i < _week.length - 1) {
+        _offsetTo = _offsetFrom + _week[i + 1].games.length * kCardHeight;
+      } else {
+        _offsetTo = double.infinity;
       }
       _tabs.add(DayTab(
         day: _week[i],
         selected: i == 0,
         offsetFrom: kDayVerticalItemHeight * i + _offsetFrom,
+        offsetTo: _offsetTo,
       ));
     }
 
     _tabController = TabController(length: _week.length, vsync: ticker);
+    _scrollController.addListener(_onScrollListener);
 
     notifyListeners();
     _offsetFrom = 0.0;
+    _offsetTo = 0.0;
   }
 
-  void onDaySelected(int index) {
+  Future<void> onDaySelected(int index, {bool animationRequired = true}) async {
     final selected = _tabs[index];
     for (int i = 0; i < _tabs.length; i++) {
       _tabs[i] = _tabs[i].copyWith(selected == tabs[i]);
     }
 
-    scrollController.animateTo(selected.offsetFrom, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+    if (animationRequired) {
+      _listen = false;
+      await scrollController.animateTo(selected.offsetFrom,
+          duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+      _listen = true;
+    }
     notifyListeners();
+  }
+
+  void _onScrollListener() {
+    if (_listen) {
+      for (int i = 0; i < _tabs.length; i++) {
+        final tab = tabs[i];
+        if (_scrollController.offset >= tab.offsetFrom && _scrollController.offset <= tab.offsetTo && !tab.selected) {
+          onDaySelected(i, animationRequired: false);
+          _tabController.animateTo(i);
+          break;
+        }
+      }
+    }
   }
 
   @override
   void dispose() {
+    _scrollController.removeListener(_onScrollListener);
     _scrollController.dispose();
     _tabController.dispose();
     super.dispose();
