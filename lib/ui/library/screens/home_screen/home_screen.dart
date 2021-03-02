@@ -21,6 +21,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   }
 
   @override
+  void dispose() {
+    model.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -56,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               Expanded(
                   child: Container(
                 child: ListView.builder(
+                    controller: model.scrollController,
                     itemCount: model.items.length,
                     itemBuilder: (context, index) {
                       final item = model.items[index];

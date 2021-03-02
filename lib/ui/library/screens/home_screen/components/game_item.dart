@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/ui/library/screens/home_screen/components/game_card.dart';
 
@@ -10,6 +11,7 @@ class GameItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: kCardHeight,
       child: Padding(padding: const EdgeInsets.all(24.0), child: GameCard(game: game)),
     );
   }

@@ -2,8 +2,9 @@
 RappyCategory == DayModel
 rappiCategories = _week;
 RappiProduct =- GameModel
-RappiItem =
-
+RappiTabCategory = DayTab
+categoryHeight = kDayVerticalItemHeight
+dfasdasdad = kCardHeight
 
 ## Process
 ##### codes
