@@ -48,14 +48,14 @@ String kHeroSearchTag = 'Search Icon';
 
 //
 // FONTS - General
-TextStyle kH1 = TextStyle(fontFamily: "Noto Sans", fontSize: 40, fontWeight: FontWeight.w700, color: Colors.black);
+TextStyle kH1 = TextStyle(fontFamily: "Montserrat", fontSize: 40, color: Colors.black);
 
-TextStyle kH2 = TextStyle(fontFamily: "Noto Sans", fontSize: 32, fontWeight: FontWeight.w700, color: Colors.black);
+TextStyle kH2 = TextStyle(fontFamily: "Montserrat", fontSize: 32, color: Colors.black);
 
-TextStyle kH3 = TextStyle(fontFamily: "Noto Sans", fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black);
+TextStyle kH3 = TextStyle(fontFamily: "Montserrat", fontSize: 24, color: Colors.black);
 
-TextStyle kP = TextStyle(fontFamily: "Noto Sans", fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black);
+TextStyle kP = TextStyle(fontFamily: "Raleway", fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black);
 
-TextStyle kSmall = TextStyle(fontFamily: "Noto Sans", fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black);
+TextStyle kSmall = TextStyle(fontFamily: "Raleway", fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black);
 
-TextStyle kMicro = TextStyle(fontFamily: "Noto Sans", fontSize: 8, fontWeight: FontWeight.w400, color: Colors.black);
+TextStyle kMicro = TextStyle(fontFamily: "Raleway", fontSize: 8, fontWeight: FontWeight.w400, color: Colors.black);

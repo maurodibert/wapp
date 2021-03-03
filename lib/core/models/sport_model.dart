@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wagr/core/helpers/sport_icon_getter.dart';
-import 'package:wagr/ui/library/wagr_icons.dart';
 
 class SportModel {
   final String name;

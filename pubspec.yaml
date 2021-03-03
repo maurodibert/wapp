@@ -23,12 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.3.3
   http: ^0.12.2
   get_it: ^5.0.6
   intl: ^0.16.1
-  scroll_to_index: ^1.0.6
-  rect_getter: ^0.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -53,8 +50,15 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/gifs/
   # example:
   fonts:
     - family: Wagr Icons
       fonts:
         - asset: assets/fonts/wagr_icons/wagr.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/montserrat_bold.ttf
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/raleway/raleway_light.ttf
