@@ -6,10 +6,10 @@ import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/core/models/home_team_model.dart';
 import 'package:wagr/ui/library/wagr_icons.dart';
 
-class GameItem extends StatelessWidget {
+class GameCard extends StatelessWidget {
   final GameModel game;
 
-  const GameItem({
+  const GameCard({
     @required this.game,
   });
 
@@ -73,7 +73,7 @@ class GameItem extends StatelessWidget {
     AwayTeamModel aTeam = game.aTeam;
 
     return Container(
-      height: kGameItemHeight,
+      height: kGameCardHeight,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

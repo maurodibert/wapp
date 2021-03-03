@@ -62,14 +62,15 @@ class HomeViewModel extends ChangeNotifier {
     // synced scrolling
     for (int i = 0; i < _week.length; i++) {
       if (i > 0) {
-        _offsetFrom += _week[i - 1].games.length * kGameItemHeight;
+        _offsetFrom += _week[i - 1].games.length * kGameCardHeight;
       }
 
       if (i < _week.length - 1) {
-        _offsetTo = _offsetFrom + _week[i + 1].games.length * kGameItemHeight;
+        _offsetTo = _offsetFrom + _week[i + 1].games.length * kGameCardHeight;
       } else {
         _offsetTo = double.infinity;
       }
+
       _tabs.add(DayTabModel(
         index: i,
         day: _week[i],
@@ -102,8 +103,10 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _onScrollListener() {
+  // TODO; async added to detect bug
+  void _onScrollListener() async {
     if (_listen) {
+      await Future.delayed(Duration(seconds: 1));
       for (int i = 0; i < _tabs.length; i++) {
         final tab = tabs[i];
         if (_scrollController.offset >= tab.offsetFrom && _scrollController.offset <= tab.offsetTo && !tab.selected) {

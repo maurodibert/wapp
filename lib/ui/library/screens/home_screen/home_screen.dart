@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/ui/library/screens/home_screen/components/day_item.dart';
-import 'package:wagr/ui/library/screens/home_screen/components/game_item.dart';
+import 'package:wagr/ui/library/screens/home_screen/components/game_card.dart';
 import 'package:wagr/ui/library/screens/home_screen/components/week_tab.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                   todayGamesLength: todayGamesLength,
                                 );
                               } else {
-                                return GameItem(game: item.game);
+                                return GameCard(game: item.game);
                               }
                             },
                           ),
