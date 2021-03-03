@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/helpers/week_creator.dart';
 import 'package:wagr/core/models/day_model.dart';
 import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/core/services/games_api.dart';
 import 'package:wagr/service_locator.dart';
-import 'package:wagr/core/models/day_games_item_model.dart';
+import 'package:wagr/core/models/day_item_model.dart';
 import 'package:wagr/core/models/day_tab_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -63,24 +62,23 @@ class HomeViewModel extends ChangeNotifier {
     for (int i = 0; i < _week.length; i++) {
       DayModel currentDay = _week[i];
       DayModel previousDay = i == 0 ? null : _week[i - 1];
-      // DayModel nextDay = i == _week.length - 1 ? null : _week[i + 1];
 
       // calculate tabs' positions
-      /// if not in the first tab
+      // if not in the first tab
       if (i > 0) {
         _offsetFrom += kDayTitleHeight + previousDay.games.length * kGameCardHeight;
       }
 
-      /// if not in the last tab
+      // if not in the last tab
       if (i < _week.length - 1) {
         _offsetTo = _offsetFrom + kDayTitleHeight + currentDay.games.length * kGameCardHeight;
       } else {
         _offsetTo = double.infinity;
       }
 
-      /// first tab
+      // first tab
       if (i == 0) {
-        // offsetFrom is 0 b
+        // offsetFrom is 0
         _offsetTo = kDayTitleHeight + currentDay.games.length * kGameCardHeight;
       }
 
@@ -120,10 +118,8 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO; async added to detect bug
-  void _onScrollListener() async {
+  void _onScrollListener() {
     if (_listen) {
-      await Future.delayed(Duration(seconds: 1));
       for (int i = 0; i < _tabs.length; i++) {
         final tab = tabs[i];
         if (_scrollController.offset >= tab.positionFrom &&

@@ -58,3 +58,9 @@ flutter:
     - family: Wagr Icons
       fonts:
         - asset: assets/fonts/wagr_icons/wagr.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/montserrat_bold.ttf
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/raleway/raleway_light.ttf
