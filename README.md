@@ -5,7 +5,7 @@ An application for fetching games and betting with friends.
 ![demo](assets/gifs/wapp_repo.gif)
 
 
-## How to Use 
+## :pencil: How to Use 
 **Step 1:**
 Download or clone this repo by using the link below:
 
