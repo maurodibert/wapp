@@ -61,31 +61,48 @@ class HomeViewModel extends ChangeNotifier {
 
     // synced scrolling
     for (int i = 0; i < _week.length; i++) {
+      DayModel currentDay = _week[i];
+      DayModel previousDay = i == 0 ? null : _week[i - 1];
+      // DayModel nextDay = i == _week.length - 1 ? null : _week[i + 1];
+
+      // calculate tabs' positions
+      /// if not in the first tab
       if (i > 0) {
-        _offsetFrom += _week[i - 1].games.length * kGameCardHeight;
+        _offsetFrom += kDayTitleHeight + previousDay.games.length * kGameCardHeight;
       }
 
+      /// if not in the last tab
       if (i < _week.length - 1) {
-        _offsetTo = _offsetFrom + _week[i + 1].games.length * kGameCardHeight;
+        _offsetTo = _offsetFrom + kDayTitleHeight + currentDay.games.length * kGameCardHeight;
       } else {
         _offsetTo = double.infinity;
       }
 
-      _tabs.add(DayTabModel(
-        index: i,
-        day: _week[i],
-        selected: i == 0,
-        offsetFrom: kDayItemHeight * i + _offsetFrom,
-        offsetTo: _offsetTo,
-      ));
+      /// first tab
+      if (i == 0) {
+        // offsetFrom is 0 b
+        _offsetTo = kDayTitleHeight + currentDay.games.length * kGameCardHeight;
+      }
+
+      _tabs.add(
+        DayTabModel(
+          index: i,
+          day: _week[i],
+          // for selecting first tab default
+          selected: i == 0,
+          positionFrom: _offsetFrom,
+          positionTo: _offsetTo,
+        ),
+      );
     }
 
     _tabController = TabController(length: _week.length, vsync: ticker);
     _scrollController.addListener(_onScrollListener);
 
     notifyListeners();
+
+    /// reset once the tabs were created
     _offsetFrom = 0.0;
-    _offsetTo = 0.0;
   }
 
   Future<void> onDaySelected(int index, {bool animationRequired = true}) async {
@@ -96,7 +113,7 @@ class HomeViewModel extends ChangeNotifier {
 
     if (animationRequired) {
       _listen = false;
-      await scrollController.animateTo(selected.offsetFrom,
+      await scrollController.animateTo(selected.positionFrom,
           duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
       _listen = true;
     }
@@ -109,7 +126,9 @@ class HomeViewModel extends ChangeNotifier {
       await Future.delayed(Duration(seconds: 1));
       for (int i = 0; i < _tabs.length; i++) {
         final tab = tabs[i];
-        if (_scrollController.offset >= tab.offsetFrom && _scrollController.offset <= tab.offsetTo && !tab.selected) {
+        if (_scrollController.offset >= tab.positionFrom &&
+            _scrollController.offset <= tab.positionTo &&
+            !tab.selected) {
           onDaySelected(i, animationRequired: false);
           _tabController.animateTo(i);
           break;

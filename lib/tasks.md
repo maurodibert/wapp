@@ -6,6 +6,8 @@ RappiTabCategory = DayTab
 categoryHeight = kDayVerticalItemHeight
 dfasdasdad = kCardHeight
 
+_tabs[0].positionTo = 252
+
 ## Process
 ##### codes
 - wot: waste of time

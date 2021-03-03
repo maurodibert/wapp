@@ -19,7 +19,7 @@ class DayItem extends StatelessWidget {
     }
 
     return Container(
-      height: kDayItemHeight,
+      height: kDayTitleHeight,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Text(

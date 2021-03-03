@@ -6,20 +6,21 @@ class DayTabModel {
     @required this.index,
     @required this.day,
     @required this.selected,
-    @required this.offsetFrom,
-    @required this.offsetTo,
+    @required this.positionFrom,
+    @required this.positionTo,
   });
   final int index;
   final DayModel day;
   final bool selected;
-  final double offsetFrom;
-  final double offsetTo;
+  final double positionFrom;
+  final double positionTo;
 
+  /// will copy the tab with updated selected propery specified
   DayTabModel copyWith(bool selected) => DayTabModel(
         index: index,
         day: day,
         selected: selected,
-        offsetFrom: offsetFrom,
-        offsetTo: offsetTo,
+        positionFrom: positionFrom,
+        positionTo: positionTo,
       );
 }
