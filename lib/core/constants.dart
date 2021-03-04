@@ -30,6 +30,8 @@ const SizedBox k62Horizontal = SizedBox(width: 62);
 
 //
 // COMPONENTS - general
+const double kHeaderHeight = 112;
+const double kTabBarHeight = 80;
 const double kGameCardHeight = 172;
 const double kDayTitleHeight = 80;
 

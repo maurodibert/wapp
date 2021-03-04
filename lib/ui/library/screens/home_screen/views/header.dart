@@ -4,9 +4,9 @@ import 'package:wagr/core/constants.dart';
 Widget buildHeader() {
   return Container(
     color: kPurple,
-    height: 100,
+    height: kHeaderHeight,
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(24, 0, 0, 12),
+      padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,

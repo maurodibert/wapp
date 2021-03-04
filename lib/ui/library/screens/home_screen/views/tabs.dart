@@ -5,7 +5,7 @@ import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 
 Widget buildTabs(HomeViewModel model) {
   return Container(
-    height: 60,
+    height: kTabBarHeight,
     color: kPurple,
     child: TabBar(
       onTap: model.onDaySelected,

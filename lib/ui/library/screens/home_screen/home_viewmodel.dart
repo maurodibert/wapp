@@ -39,6 +39,10 @@ class HomeViewModel extends ChangeNotifier {
   double _offsetTo = 0.0;
   bool _listen = true;
 
+  // transitions
+  bool _isCelebrationVisible = false;
+  bool get isCelebrationVisible => _isCelebrationVisible;
+
   //
   // LIFE CYCLE - Initialization and disposing
   init(TickerProvider ticker) async {
@@ -103,6 +107,9 @@ class HomeViewModel extends ChangeNotifier {
     _offsetFrom = 0.0;
   }
 
+  // ANIMATIONS
+  // scrolling
+
   Future<void> onDaySelected(int index, {bool animationRequired = true}) async {
     final selected = _tabs[index];
     for (int i = 0; i < _tabs.length; i++) {
@@ -131,6 +138,12 @@ class HomeViewModel extends ChangeNotifier {
         }
       }
     }
+  }
+
+  // transitioning
+  void toggleCelebrationVisibility() {
+    _isCelebrationVisible = !_isCelebrationVisible;
+    notifyListeners();
   }
 
   @override

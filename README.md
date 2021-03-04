@@ -4,6 +4,8 @@ An application for fetching games and betting with friends.
 
 ![demo](assets/gifs/wapp_repo.gif)
 
+## toggle
+
 
 ## :pencil: How to Use 
 **Step 1:**
