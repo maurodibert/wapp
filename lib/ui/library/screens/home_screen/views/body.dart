@@ -21,7 +21,7 @@ Widget buildBody(HomeViewModel model) {
               todayGamesLength: todayGamesLength,
             );
           } else {
-            return GameCard(game: item.game);
+            return GameCard(game: item.game, model: model);
           }
         },
       ),

@@ -4,6 +4,8 @@ An application for fetching games and betting with friends.
 
 ![demo](assets/gifs/wapp_repo.gif)
 
+## toggle
+
 
 ## :pencil: How to Use 
 **Step 1:**
@@ -72,3 +74,4 @@ will make for devs, life much more comfortable.
 
 ## :thinking: Doubts
 - How to display spreads
+- How to hide bottom android navigation bar

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 // Primary Palette
 const kPurple = Color(0xFF440743);
 const kPurpleLight = Color(0xFF7A4173);
-const kOrange = Color(0xFFB87D2B);
-const kOrangeLight = Color(0xFFF8CC76);
+const kOrange = Colors.orange;
+const kOrangeLight = Colors.orangeAccent;
+// const kOrange = Color(0xFFB87D2B);
+// const kOrangeLight = Color(0xFFF8CC76);
 
 // General Palette
 const kError = Color(0xFFF64949);
@@ -30,6 +32,8 @@ const SizedBox k62Horizontal = SizedBox(width: 62);
 
 //
 // COMPONENTS - general
+const double kHeaderHeight = 112;
+const double kTabBarHeight = 60;
 const double kGameCardHeight = 172;
 const double kDayTitleHeight = 80;
 
