@@ -20,7 +20,10 @@ class WeekTab extends StatelessWidget {
                 : dayTabModel.index == 1
                     ? "Tomorrow"
                     : dayTabModel.day.dayName,
-            style: kP.copyWith(fontSize: 16, color: selected ? kOrangeLight : kOrange)),
+            style: kP.copyWith(
+                fontSize: 16,
+                color: selected ? kOrangeLight : kOrange,
+                fontWeight: selected ? FontWeight.bold : FontWeight.normal)),
       ),
     );
   }

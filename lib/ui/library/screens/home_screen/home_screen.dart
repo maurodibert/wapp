@@ -31,37 +31,38 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+          resizeToAvoidBottomPadding: false,
           body: SafeArea(
-        child: AnimatedBuilder(
-            animation: model,
-            builder: (_, __) => model.games != null
-                ? Stack(
-                    children: [
-                      Semantics(
-                        label: "Games Scrolling Page",
-                        child: Container(
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              buildHeader(),
-                              buildTabs(model),
-                              buildBody(model),
-                            ],
+            child: AnimatedBuilder(
+                animation: model,
+                builder: (_, __) => model.games != null
+                    ? Stack(
+                        children: [
+                          Semantics(
+                            label: "Games Scrolling Page",
+                            child: Container(
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  buildHeader(),
+                                  buildTabs(model),
+                                  buildBody(model),
+                                ],
+                              ),
+                            ),
                           ),
+                          ...buildCelebration(model, size),
+                        ],
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: kOrangeLight,
+                          strokeWidth: 16,
+                          valueColor: AlwaysStoppedAnimation<Color>(kPurple),
                         ),
-                      ),
-                      ...buildCelebration(model, size),
-                    ],
-                  )
-                : Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: kPurple,
-                      strokeWidth: 16,
-                      valueColor: AlwaysStoppedAnimation<Color>(kOrangeLight),
-                    ),
-                  )),
-      )),
+                      )),
+          )),
     );
   }
 }

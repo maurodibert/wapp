@@ -74,3 +74,4 @@ will make for devs, life much more comfortable.
 
 ## :thinking: Doubts
 - How to display spreads
+- How to hide bottom android navigation bar

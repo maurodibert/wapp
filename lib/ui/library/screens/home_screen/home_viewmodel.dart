@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:rive/rive.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/helpers/week_creator.dart';
 import 'package:wagr/core/models/day_model.dart';
@@ -43,6 +45,11 @@ class HomeViewModel extends ChangeNotifier {
   bool _isCelebrationVisible = false;
   bool get isCelebrationVisible => _isCelebrationVisible;
 
+  // animations
+  Artboard _riveArtboard;
+  Artboard get riveArtboard => _riveArtboard;
+  RiveAnimationController _podiumController;
+  RiveAnimationController get podiumController => _podiumController;
   //
   // LIFE CYCLE - Initialization and disposing
   init(TickerProvider ticker) async {
@@ -96,6 +103,16 @@ class HomeViewModel extends ChangeNotifier {
           positionTo: _offsetTo,
         ),
       );
+
+      // animations
+      rootBundle.load('assets/images/wagr.riv').then((data) async {
+        final file = RiveFile();
+        if (file.import(data)) {
+          final artboard = file.mainArtboard;
+          artboard.addController(_podiumController = SimpleAnimation('idle'));
+          _riveArtboard = artboard;
+        }
+      });
     }
 
     _tabController = TabController(length: _week.length, vsync: ticker);
@@ -143,6 +160,7 @@ class HomeViewModel extends ChangeNotifier {
   // transitioning
   void toggleCelebrationVisibility() {
     _isCelebrationVisible = !_isCelebrationVisible;
+    _podiumController.isActive;
     notifyListeners();
   }
 

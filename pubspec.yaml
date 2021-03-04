@@ -26,6 +26,7 @@ dependencies:
   http: ^0.12.2
   get_it: ^5.0.6
   intl: ^0.16.1
+  rive: ^0.6.8
 
 
   # The following adds the Cupertino Icons font to your application.

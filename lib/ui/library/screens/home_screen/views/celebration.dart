@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart' as rive;
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 
@@ -11,28 +12,20 @@ List<Widget> buildCelebration(HomeViewModel model, Size size) {
       curve: Curves.bounceInOut,
       child: Container(
         width: size.width,
-        height: size.height,
-        color: kPurpleLight,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [],
+        height: size.height - kHeaderHeight - kTabBarHeight,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [kPurple, kPurple, kPurpleLight, kPurpleLight],
+              stops: [0, 0.01, 1, 1]),
         ),
-      ),
-    ),
-    // header
-    AnimatedPositioned(
-      top: model.isCelebrationVisible ? 0 : -2000,
-      duration: Duration(milliseconds: 1200),
-      curve: Curves.easeInOut,
-      child: Container(
-        width: size.width,
-        height: kHeaderHeight + kTabBarHeight,
-        color: kPurple,
+        // color: kPurpleLight,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(48.0),
               child: GestureDetector(
                   onTap: model.toggleCelebrationVisibility,
                   child: Icon(
@@ -44,6 +37,26 @@ List<Widget> buildCelebration(HomeViewModel model, Size size) {
           ],
         ),
       ),
+    ),
+    // header
+    AnimatedPositioned(
+      top: model.isCelebrationVisible ? 0 : -2000,
+      duration: Duration(milliseconds: 1200),
+      curve: Curves.easeInOut,
+      child: Container(
+          width: size.width,
+          height: kHeaderHeight + kTabBarHeight,
+          color: Colors.orange,
+          child: model.riveArtboard != null && model.isCelebrationVisible
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: 100,
+                    child: rive.Rive(
+                      artboard: model.riveArtboard,
+                    ),
+                  ))
+              : Container()),
     ),
     // divider
     Positioned(
