@@ -55,8 +55,11 @@ At the same time, the code is categorized to make the maintenance easier and ple
 from scratch, perhaps, could be a little bit cumbersome for an app this small, but as soon as it gets bigger
 will make for devs, life much more comfortable. 
 
-## :gift: Extra Features
-* --
+## :gift: Features
+* Week calculator
+* Double synced scrolling
+* Custom fonts
+* Custom icons
 
 ## :point_up: Decisions and Considerations
 **Toggle/Tasks**: I've decided to separate the process into three main stages: Basics (everything in the model but the congratulations screen), Scrolling, and Congratulations Screen, to achieve the demands first and then having time for the most creative part.
