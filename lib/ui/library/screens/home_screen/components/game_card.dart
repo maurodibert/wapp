@@ -81,7 +81,9 @@ class GameCard extends StatelessWidget {
             Container(
               height: 100,
               width: double.infinity,
-              decoration: BoxDecoration(boxShadow: [kBottomMediumShadow]),
+              decoration: BoxDecoration(
+                boxShadow: [kBottomMediumShadow],
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(kMediumRadius)),
                 child: Row(

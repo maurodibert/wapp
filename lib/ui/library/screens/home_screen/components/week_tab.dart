@@ -10,6 +10,7 @@ class WeekTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final selected = dayTabModel.selected;
     return Card(
+      color: Colors.transparent,
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -19,7 +20,7 @@ class WeekTab extends StatelessWidget {
                 : dayTabModel.index == 1
                     ? "Tomorrow"
                     : dayTabModel.day.dayName,
-            style: kP.copyWith(fontSize: 16, color: selected ? Colors.black : Colors.black38)),
+            style: kP.copyWith(fontSize: 16, color: selected ? kOrangeLight : kOrange)),
       ),
     );
   }

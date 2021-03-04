@@ -28,7 +28,9 @@ class DayItem extends StatelessWidget {
                 : index == finalIndex
                     ? "Tomorrow"
                     : day.dayName,
-            style: kP.copyWith(fontSize: 24)),
+            style: kP.copyWith(
+              fontSize: 24,
+            )),
       ),
     );
   }

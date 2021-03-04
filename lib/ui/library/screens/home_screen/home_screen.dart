@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wagr/core/constants.dart';
-import 'package:wagr/ui/library/screens/home_screen/components/day_item.dart';
-import 'package:wagr/ui/library/screens/home_screen/components/game_card.dart';
-import 'package:wagr/ui/library/screens/home_screen/components/week_tab.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/body.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/header.dart';
@@ -36,16 +33,30 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         child: AnimatedBuilder(
             animation: model,
             builder: (_, __) => model.games != null
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                ? Stack(
                     children: [
-                      buildHeader(),
-                      buildTabs(model),
-                      buildBody(model),
+                      // Container(
+                      //   color: kOrangeLight,
+                      // ),
+                      Container(
+                        color: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            buildHeader(),
+                            buildTabs(model),
+                            buildBody(model),
+                          ],
+                        ),
+                      ),
                     ],
                   )
                 : Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.black87,
+                      strokeWidth: 16,
+                      valueColor: AlwaysStoppedAnimation<Color>(kOrangeLight),
+                    ),
                   )),
       )),
     );
