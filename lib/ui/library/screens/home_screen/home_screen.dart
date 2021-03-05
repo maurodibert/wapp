@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/body.dart';
-import 'package:wagr/ui/library/screens/home_screen/views/celebration.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/header.dart';
 import 'package:wagr/ui/library/screens/home_screen/views/tabs.dart';
 
@@ -28,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomPadding: false,
@@ -36,24 +34,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: AnimatedBuilder(
                 animation: model,
                 builder: (_, __) => model.games != null
-                    ? Stack(
-                        children: [
-                          Semantics(
-                            label: "Games Scrolling Page",
-                            child: Container(
-                              color: Colors.white,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  buildHeader(),
-                                  buildTabs(model),
-                                  buildBody(model),
-                                ],
-                              ),
-                            ),
-                          ),
-                          ...buildCelebration(model, size),
-                        ],
+                    ? Container(
+                        color: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            buildHeader(),
+                            buildTabs(model),
+                            buildBody(model),
+                          ],
+                        ),
                       )
                     : Center(
                         child: CircularProgressIndicator(

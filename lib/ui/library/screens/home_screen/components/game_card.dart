@@ -77,8 +77,7 @@ class GameCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        print('tapped');
-        model.toggleCelebrationVisibility();
+        Navigator.of(context).pushNamed('/celebration');
       },
       child: Container(
         height: kGameCardHeight,

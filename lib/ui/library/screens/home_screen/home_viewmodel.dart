@@ -42,14 +42,9 @@ class HomeViewModel extends ChangeNotifier {
   bool _listen = true;
 
   // transitions
-  bool _isCelebrationVisible = false;
-  bool get isCelebrationVisible => _isCelebrationVisible;
+  // bool _isCelebrationVisible = false;
+  // bool get isCelebrationVisible => _isCelebrationVisible;
 
-  // animations
-  Artboard _riveArtboard;
-  Artboard get riveArtboard => _riveArtboard;
-  RiveAnimationController _podiumController;
-  RiveAnimationController get podiumController => _podiumController;
   //
   // LIFE CYCLE - Initialization and disposing
   init(TickerProvider ticker) async {
@@ -59,6 +54,7 @@ class HomeViewModel extends ChangeNotifier {
     _today = _games[0].date;
     _week = createWeek(_today);
 
+    // TODO: remove double loop
     for (DayModel day in _week) {
       day.games = [];
       _items.add(DayItemModel(day: day));
@@ -104,16 +100,6 @@ class HomeViewModel extends ChangeNotifier {
           positionTo: _offsetTo,
         ),
       );
-
-      // animations
-      rootBundle.load('assets/images/wagr.riv').then((data) async {
-        final file = RiveFile();
-        if (file.import(data)) {
-          final artboard = file.mainArtboard;
-          artboard.addController(_podiumController = SimpleAnimation('idle'));
-          _riveArtboard = artboard;
-        }
-      });
     }
 
     _tabController = TabController(length: _week.length, vsync: ticker);
@@ -159,10 +145,10 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   // transitioning
-  void toggleCelebrationVisibility() {
-    _isCelebrationVisible = !_isCelebrationVisible;
-    notifyListeners();
-  }
+  // void toggleCelebrationVisibility() {
+  //   _isCelebrationVisible = !_isCelebrationVisible;
+  //   notifyListeners();
+  // }
 
   @override
   void dispose() {
@@ -170,11 +156,5 @@ class HomeViewModel extends ChangeNotifier {
     _scrollController.dispose();
     _tabController.dispose();
     super.dispose();
-  }
-
-  void togglePlay() {
-    print('trying to animate');
-    _podiumController.isActive = !_podiumController.isActive;
-    notifyListeners();
   }
 }

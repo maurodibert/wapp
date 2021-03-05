@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wagr/service_locator.dart';
+import 'package:wagr/ui/library/screens/celebration_screen/celebration_screen.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_screen.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class WagrApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
+        '/celebration': (context) => CelebrationScreen(),
       },
     );
   }
