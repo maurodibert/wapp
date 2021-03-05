@@ -24,6 +24,7 @@ List<Widget> buildCelebration(HomeViewModel model, Size size) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            FloatingActionButton(onPressed: model.togglePlay),
             Padding(
               padding: const EdgeInsets.all(48.0),
               child: GestureDetector(

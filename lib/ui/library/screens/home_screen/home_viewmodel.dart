@@ -58,6 +58,7 @@ class HomeViewModel extends ChangeNotifier {
     // week order
     _today = _games[0].date;
     _week = createWeek(_today);
+
     for (DayModel day in _week) {
       day.games = [];
       _items.add(DayItemModel(day: day));
@@ -160,7 +161,6 @@ class HomeViewModel extends ChangeNotifier {
   // transitioning
   void toggleCelebrationVisibility() {
     _isCelebrationVisible = !_isCelebrationVisible;
-    _podiumController.isActive;
     notifyListeners();
   }
 
@@ -170,5 +170,11 @@ class HomeViewModel extends ChangeNotifier {
     _scrollController.dispose();
     _tabController.dispose();
     super.dispose();
+  }
+
+  void togglePlay() {
+    print('trying to animate');
+    _podiumController.isActive = !_podiumController.isActive;
+    notifyListeners();
   }
 }
