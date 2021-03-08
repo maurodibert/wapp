@@ -15,7 +15,7 @@ class SlidingContainer extends StatelessWidget {
     @required this.intervalStart,
     @required this.intervalEnd,
     @required this.color,
-    @required this.height,
+    this.height,
     this.child,
   }) : super(key: key);
 

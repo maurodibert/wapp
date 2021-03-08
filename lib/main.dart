@@ -22,7 +22,7 @@ class WagrApp extends StatelessWidget {
         }
         if (settings.name == '/celebration-screen') {
           return PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 1500),
+              transitionDuration: Duration(milliseconds: 2500),
               pageBuilder: (context, animation, animationTime) {
                 return ListenableProvider(create: (context) => animation, child: CelebrationScreen());
               });

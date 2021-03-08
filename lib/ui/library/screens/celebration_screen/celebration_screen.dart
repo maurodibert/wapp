@@ -13,49 +13,60 @@ class CelebrationScreen extends StatefulWidget {
 }
 
 class _CelebrationPageState extends State<CelebrationScreen> {
-  void _togglePlay() {
-    setState(() => _podiumController.isActive = !_podiumController.isActive);
-  }
-
-  bool get isPlaying => _podiumController?.isActive ?? false;
-
   Artboard _riveArtboard;
   RiveAnimationController _podiumController;
 
   @override
   void initState() {
     super.initState();
-    rootBundle.load('assets/animations/wagr.riv').then((data) async {
+    rootBundle.load('assets/animations/yeh.riv').then((data) async {
       final file = RiveFile();
       if (file.import(data)) {
         final artboard = file.mainArtboard;
-        artboard.addController(_podiumController = SimpleAnimation('wagr'));
-        setState(() => _riveArtboard = artboard);
+        artboard.addController(_podiumController = SimpleAnimation('jump'));
+        setState(() {
+          _riveArtboard = artboard;
+        });
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        color: Colors.transparent,
-        child: Column(
+        color: kPurpleLight,
+        child: Stack(
           children: [
-            SlidingContainer(
-              color: kPurple,
-              initialOffsetX: 1,
-              intervalStart: 0,
-              intervalEnd: 0.5,
-              height: kHeaderHeight + kTabBarHeight,
+            Column(
+              children: [
+                Expanded(
+                  child: SlidingContainer(
+                    color: kOrange,
+                    initialOffsetX: -1,
+                    intervalStart: 0.5,
+                    intervalEnd: 1,
+                  ),
+                ),
+                Expanded(
+                  child: SlidingContainer(
+                    color: kPurple,
+                    initialOffsetX: 1,
+                    intervalStart: 0,
+                    intervalEnd: 0.5,
+                  ),
+                ),
+              ],
             ),
-            SlidingContainer(
-              height: size.height - kHeaderHeight - kTabBarHeight,
-              color: kOrange,
-              initialOffsetX: -1,
-              intervalStart: 0.5,
-              intervalEnd: 1,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _podiumController.isActive;
+                });
+              },
+              child: Rive(
+                artboard: _riveArtboard,
+              ),
             ),
           ],
         ),
