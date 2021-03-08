@@ -2,7 +2,7 @@
 # Wagr App
 An application for fetching games and betting with friends.
 
-![demo](assets/gifs/wapp_repo.gif)
+![demo](assets/gifs/wapp_demo.gif)
 
 ## toggle
 
