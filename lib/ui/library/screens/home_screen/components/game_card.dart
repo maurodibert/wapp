@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:wagr/core/constants.dart';
 import 'package:wagr/core/models/away_team_model.dart';
 import 'package:wagr/core/models/game_model.dart';
 import 'package:wagr/core/models/home_team_model.dart';
+import 'package:wagr/ui/library/screens/celebration_screen/celebration_screen.dart';
 import 'package:wagr/ui/library/screens/home_screen/home_viewmodel.dart';
 import 'package:wagr/ui/library/wagr_icons.dart';
 
@@ -25,14 +27,16 @@ class GameCard extends StatelessWidget {
         flex: 4,
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 22.0),
+            padding: const EdgeInsets.only(bottom: 24.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(game.spread),
                 Text(_splittedHomeTeamName[0], style: kP),
-                Text(_splittedHomeTeamName[1], style: kH3),
+                if (_splittedHomeTeamName[1].length < 11) Text(_splittedHomeTeamName[1], style: kH3),
+                if (_splittedHomeTeamName[1].length > 10)
+                  Text(_splittedHomeTeamName[1], style: kH3.copyWith(fontSize: 18)),
               ],
             ),
           ),
@@ -61,7 +65,9 @@ class GameCard extends StatelessWidget {
               children: [
                 Text(game.spread),
                 Text(_splittedAwayTeamName[0], style: kP),
-                Text(_splittedAwayTeamName[1], style: kH3),
+                if (_splittedAwayTeamName[1].length < 11) Text(_splittedAwayTeamName[1], style: kH3),
+                if (_splittedAwayTeamName[1].length > 10)
+                  Text(_splittedAwayTeamName[1], style: kH3.copyWith(fontSize: 18)),
               ],
             ),
           ),
@@ -77,7 +83,7 @@ class GameCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed('/celebration');
+        Navigator.pushNamed(context, '/celebration-screen', arguments: hTeam.name);
       },
       child: Container(
         height: kGameCardHeight,

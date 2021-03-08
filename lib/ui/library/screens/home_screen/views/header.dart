@@ -11,7 +11,11 @@ Widget buildHeader() {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Games', style: kH1.copyWith(fontWeight: FontWeight.normal, color: kOrangeLight, fontFamily: 'Raleway')),
+          Text('Games',
+              style: kH1.copyWith(
+                fontWeight: FontWeight.normal,
+                color: kOrangeLight,
+              )),
         ],
       ),
     ),

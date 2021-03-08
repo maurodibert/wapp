@@ -29,30 +29,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          resizeToAvoidBottomPadding: false,
           body: SafeArea(
-            child: AnimatedBuilder(
-                animation: model,
-                builder: (_, __) => model.games != null
-                    ? Container(
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            buildHeader(),
-                            buildTabs(model),
-                            buildBody(model),
-                          ],
-                        ),
-                      )
-                    : Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: kOrangeLight,
-                          strokeWidth: 16,
-                          valueColor: AlwaysStoppedAnimation<Color>(kPurple),
-                        ),
-                      )),
-          )),
+        child: AnimatedBuilder(
+            animation: model,
+            builder: (_, __) => model.games != null
+                ? Container(
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        buildHeader(),
+                        buildTabs(model),
+                        buildBody(model),
+                      ],
+                    ),
+                  )
+                : Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: kOrangeLight,
+                      strokeWidth: 16,
+                      valueColor: AlwaysStoppedAnimation<Color>(kPurple),
+                    ),
+                  )),
+      )),
     );
   }
 }
